@@ -1,15 +1,15 @@
-# lita-onewheel-twitter-photo
+# lita-onewheel-amazon-product
 
-[![Build Status](https://travis-ci.org/onewheelskyward/lita-onewheel-twitter-photo.png?branch=master)](https://travis-ci.org/onewheelskyward/lita-onewheel-twitter-photo)
-[![Coverage Status](https://coveralls.io/repos/onewheelskyward/lita-onewheel-twitter-photo/badge.png)](https://coveralls.io/r/onewheelskyward/lita-onewheel-twitter-photo)
+[![Build Status](https://travis-ci.org/onewheelskyward/lita-onewheel-amazon-product.png?branch=master)](https://travis-ci.org/onewheelskyward/lita-onewheel-amazon-product)
+[![Coverage Status](https://coveralls.io/repos/onewheelskyward/lita-onewheel-amazon-product/badge.png)](https://coveralls.io/r/onewheelskyward/lita-onewheel-amazon-product)
 
-Display twitter photos when status links are posted.
+Display Amazon product links when product pages are posted.
 
 ## Installation
 
-Add lita-onewheel-twitter-photo to your Lita instance's Gemfile:
+Add lita-onewheel-amazon-product to your Lita instance's Gemfile:
 
 ``` ruby
-gem 'lita-onewheel-twitter-photo'
+gem 'lita-onewheel-amazon-product'
 ```
 

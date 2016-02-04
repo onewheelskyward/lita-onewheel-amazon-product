@@ -1,11 +1,11 @@
 Gem::Specification.new do |spec|
-  spec.name          = 'lita-onewheel-twitter-photo'
+  spec.name          = 'lita-onewheel-amazon-product'
   spec.version       = '0.0.0'
   spec.authors       = ['Andrew Kreps']
   spec.email         = ['andrew.kreps@gmail.com']
-  spec.description   = %q{Lita interface to post links to twitter photos.}
+  spec.description   = %q{Lita interface to post information about amazon products.}
   spec.summary       = %q{See above.}
-  spec.homepage      = 'https://github.com/onewheelskyward/lita-onewheel-twitter-photo'
+  spec.homepage      = 'https://github.com/onewheelskyward/lita-onewheel-amazon-product'
   spec.license       = 'MIT'
   spec.metadata      = { 'lita_plugin_type' => 'handler'}
 
