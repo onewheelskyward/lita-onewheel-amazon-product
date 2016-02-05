@@ -16,7 +16,7 @@ module Lita
         noko_doc.xpath('//meta').each do |meta|
           attrs = meta.attributes
           if attrs['name'].to_s == 'description'
-            description = attrs['content'].to_s
+            description = process_description attrs['content'].to_s
           end
         end
 
@@ -25,6 +25,11 @@ module Lita
         unless description.empty?
           response.reply price_node.to_s + ' ' + description.to_s
         end
+      end
+
+      def process_description(desc)
+        desc.sub! /^Amazon.com: /, ''
+        desc.sub! /:.*$/, ''
       end
 
       Lita.register_handler(self)
