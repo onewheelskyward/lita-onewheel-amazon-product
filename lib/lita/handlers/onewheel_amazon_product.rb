@@ -8,24 +8,31 @@ module Lita
 
       def get_amazon_product(response)
         description = ''
+        price = 0
         uri = response.matches[0][0]
+        Lita.logger.debug "lita-onewheel-amazon-product: Grabbing URI #{uri}"
         doc = RestClient.get uri
 
-        Lita.logger.debug doc
         noko_doc = Nokogiri::HTML doc
-        noko_doc.xpath('//meta').each do |meta|
+        noko_doc.css('meta').each do |meta|
           attrs = meta.attributes
-          Lita.logger.debug "attrs: #{attrs.inspect}"
           if attrs['name'].to_s == 'description'
-            Lita.logger.debug "attrs content: #{attrs['content'].to_s}"
             description = process_description attrs['content'].to_s
           end
         end
 
-        price_node = noko_doc.css('span#priceblock_ourprice').first.content
+        price_node = noko_doc.css('span#priceblock_ourprice')
+
+        if price_node.empty?
+          price_node = noko_doc.css('div#unqualifiedBuyBox .a-color-price')
+        end
+
+        unless price_node.empty?
+          price = price_node.first.content.to_s
+        end
 
         unless description.empty?
-          response.reply price_node.to_s + ' ' + description.to_s
+          response.reply price.to_s + ' ' + description.to_s
         end
       end
 

@@ -7,8 +7,14 @@ end
 
 describe Lita::Handlers::OnewheelAmazonProduct, lita_handler: true do
   it 'puts the amazon product info on the response' do
-    mock_fixture('sample')
+    mock_fixture('our_price')
     send_message ('http://www.amazon.com/Plugable-Micro-B-Ethernet-Raspberry-AX88772A/dp/B00RM3KXAU/')
     expect(replies.last).to eq('$13.95 Plugable USB 2.0 OTG Micro-B to 10/100 Fast Ethernet Adapter for Windows Tablets & Raspberry Pi Zero (ASIX AX88772A chipset)')
+  end
+
+  it 'puts the amazon product info on the response when there is no amazon price' do
+    mock_fixture('third_party_price')
+    send_message ('http://www.amazon.com/Digital-Life-Performance-Ethernet-Cables/dp/B001AE8YBW/')
+    expect(replies.last).to eq('$67.30 Digital Life High Performance Ethernet Cables - Advanced High Speed - 7 ft. Advanced High Speed Ethernet Cable')
   end
 end
