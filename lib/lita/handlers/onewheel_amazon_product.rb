@@ -12,6 +12,7 @@ module Lita
         uri = response.matches[0][0]
         doc = RestClient.get uri
 
+        Lita.logger.debug doc
         noko_doc = Nokogiri::HTML doc
         noko_doc.xpath('//meta').each do |meta|
           attrs = meta.attributes
