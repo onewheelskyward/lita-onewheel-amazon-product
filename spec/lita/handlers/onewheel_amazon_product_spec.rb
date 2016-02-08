@@ -23,4 +23,10 @@ describe Lita::Handlers::OnewheelAmazonProduct, lita_handler: true do
     send_message ('http://www.amazon.com/Live-Detroit-Without-Being-Jackass/dp/0996836705')
     expect(replies.last).to eq('$15.10 How To Live In Detroit Without Being A Jackass')
   end
+
+  it 'puts kindle-only book price' do
+    mock_fixture('kindle_book_price')
+    send_message ('http://www.amazon.com/Echo-Billionaire-Romance-Bleeding-Hearts-ebook/dp/B01786HTZW')
+    expect(replies.last).to eq('$2.99 Echo')
+  end
 end

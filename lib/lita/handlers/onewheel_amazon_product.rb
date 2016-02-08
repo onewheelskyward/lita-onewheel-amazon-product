@@ -26,23 +26,35 @@ module Lita
           return
         end
 
+        price = get_price(noko_doc)
+
+        unless description.empty?
+          response.reply price.to_s + ' ' + description.to_s
+        end
+      end
+
+      def get_price(noko_doc)
         price_node = noko_doc.css('span#priceblock_ourprice')
 
+        # Typical product price
         if price_node.empty?
           price_node = noko_doc.css('div#unqualifiedBuyBox .a-color-price')
         end
 
+        # Third-party seller only price
         if price_node.empty?
           price_node = noko_doc.css('div#buyNewSection span.a-color-price')
+        end
+
+        # Kindle book price
+        if price_node.empty?
+          price_node = noko_doc.css('td.dp-price-col span.a-color-price')
         end
 
         unless price_node.empty?
           price = price_node.first.content.to_s
         end
-
-        unless description.empty?
-          response.reply price.to_s + ' ' + description.to_s
-        end
+        price
       end
 
       def process_description(desc)
