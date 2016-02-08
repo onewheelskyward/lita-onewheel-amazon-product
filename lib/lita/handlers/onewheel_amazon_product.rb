@@ -21,6 +21,11 @@ module Lita
           end
         end
 
+        if description.nil?
+          Lita.logger.error "lita-onewheel-amazon-product: Processing of #{uri} failed."
+          return
+        end
+
         price_node = noko_doc.css('span#priceblock_ourprice')
 
         if price_node.empty?
