@@ -29,4 +29,16 @@ describe Lita::Handlers::OnewheelAmazonProduct, lita_handler: true do
     send_message ('http://www.amazon.com/Echo-Billionaire-Romance-Bleeding-Hearts-ebook/dp/B01786HTZW')
     expect(replies.last).to eq('$2.99 Echo')
   end
+
+  it 'puts the price of 55 gallons of lube' do
+    mock_fixture('55_gallons_of_lube_price')
+    send_message ('http://www.amazon.com/Passion-Lubes-Silicone-Hybrid-Lubricant/dp/B00SZ3O6OU/ref=sr_1_1?ie=UTF8&qid=1454972328&sr=8-1&keywords=lube+drum')
+    expect(replies.last).to eq('$1,415.67 Passion Lubes Passion Water and Silicone Blend Hybrid Lubricant, 55 Gallon')
+  end
+
+  it 'puts the price of an infant circumcision' do
+    mock_fixture('infant_circumcision_price')
+    send_message ('http://www.amazon.com/Nasco-Infant-Circumcision-Trainer-White/dp/B0083Y0W26')
+    expect(replies.last).to eq('$192.00 Infant Circumcision Trainer, White ')
+  end
 end

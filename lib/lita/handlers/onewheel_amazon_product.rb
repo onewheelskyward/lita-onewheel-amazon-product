@@ -33,6 +33,8 @@ module Lita
         end
       end
 
+      # Getting prices is very non-intuitive, every type of price has it's own structure.
+      # Here we keep trying until we get something.
       def get_price(noko_doc)
         price_node = noko_doc.css('span#priceblock_ourprice')
 
@@ -58,7 +60,7 @@ module Lita
       end
 
       def process_description(desc)
-        desc.sub! /^Amazon.com: /, ''
+        desc.sub! /^Amazon.com\s*: /, ''
         desc.sub! /:.*$/, ''
       end
 
