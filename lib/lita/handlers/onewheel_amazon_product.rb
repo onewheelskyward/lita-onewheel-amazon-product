@@ -16,7 +16,7 @@ module Lita
         noko_doc = Nokogiri::HTML doc
         noko_doc.css('meta').each do |meta|
           attrs = meta.attributes
-          if attrs['name'].to_s == 'description'
+          if attrs['name'].to_s == 'title'
             description = process_description attrs['content'].to_s
           end
         end
@@ -30,6 +30,10 @@ module Lita
 
         if price_node.empty?
           price_node = noko_doc.css('div#unqualifiedBuyBox .a-color-price')
+        end
+
+        if price_node.empty?
+          price_node = noko_doc.css('div#buyNewSection span.a-color-price')
         end
 
         unless price_node.empty?

@@ -17,4 +17,10 @@ describe Lita::Handlers::OnewheelAmazonProduct, lita_handler: true do
     send_message ('http://www.amazon.com/Digital-Life-Performance-Ethernet-Cables/dp/B001AE8YBW/')
     expect(replies.last).to eq('$67.30 Digital Life High Performance Ethernet Cables - Advanced High Speed - 7 ft. Advanced High Speed Ethernet Cable')
   end
+
+  it 'puts book price' do
+    mock_fixture('book_price')
+    send_message ('http://www.amazon.com/Live-Detroit-Without-Being-Jackass/dp/0996836705')
+    expect(replies.last).to eq('$15.10 How To Live In Detroit Without Being A Jackass')
+  end
 end
