@@ -41,4 +41,10 @@ describe Lita::Handlers::OnewheelAmazonProduct, lita_handler: true do
     send_message ('http://www.amazon.com/Nasco-Infant-Circumcision-Trainer-White/dp/B0083Y0W26')
     expect(replies.last).to eq('$192.00 Infant Circumcision Trainer, White ')
   end
+
+  it 'triggers w/o the leading slug' do
+    mock_fixture('infant_circumcision_price')
+    send_message ('http://www.amazon.com/dp/B0154LAIQU?psc=1')
+    expect(replies.last).to eq('$192.00 Infant Circumcision Trainer, White ')
+  end
 end
