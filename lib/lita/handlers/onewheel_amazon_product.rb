@@ -21,7 +21,7 @@ module Lita
           end
         end
 
-        if description.nil?
+        if description.empty?
           Lita.logger.error "lita-onewheel-amazon-product: Processing of #{uri} failed."
           return
         end

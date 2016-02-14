@@ -47,4 +47,10 @@ describe Lita::Handlers::OnewheelAmazonProduct, lita_handler: true do
     send_message ('http://www.amazon.com/dp/B0154LAIQU?psc=1')
     expect(replies.last).to eq('$192.00 Infant Circumcision Trainer, White ')
   end
+
+  it 'bails on no data' do
+    allow(RestClient).to receive(:get) {  }
+    send_message('http://www.amazon.com/dp/B0154LAIQU?psc=1')
+    expect(replies.last).to eq nil
+  end
 end
