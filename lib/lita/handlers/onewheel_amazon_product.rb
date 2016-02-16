@@ -53,9 +53,14 @@ module Lita
           price_node = noko_doc.css('td.dp-price-col span.a-color-price')
         end
 
+        if price_node.empty?
+          price_node = noko_doc.css('div#olp_feature_div span.a-color-price')
+        end
+
         unless price_node.empty?
           price = price_node.first.content.to_s
         end
+
         price
       end
 

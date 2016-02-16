@@ -53,4 +53,10 @@ describe Lita::Handlers::OnewheelAmazonProduct, lita_handler: true do
     send_message('http://www.amazon.com/dp/B0154LAIQU?psc=1')
     expect(replies.last).to eq nil
   end
+
+  it 'finds data on new and used third party prices' do
+    mock_fixture('film_scanner_price')
+    send_message('http://www.amazon.com/Tamarack-Technologies-2400-Film-Scanner/dp/B00004TH24')
+    expect(replies.last).to eq('$159.99 Tamarack Technologies 2400 FS Film Scanner')
+  end
 end
