@@ -4,7 +4,7 @@ require 'rest-client'
 module Lita
   module Handlers
     class OnewheelAmazonProduct < Handler
-      route /(http.*amazon.com\/.*\/*dp\/.*)\?*/i, :get_amazon_product
+      route /([htp:\/]*www.amazon.com\/.*\/*dp\/.*)\?*/i, :get_amazon_product
 
       def get_amazon_product(response)
         description = ''
