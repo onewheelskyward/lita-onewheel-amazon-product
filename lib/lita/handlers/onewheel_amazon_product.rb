@@ -8,10 +8,17 @@ module Lita
 
       def get_amazon_product(response)
         description = ''
-        price = 0
         uri = response.matches[0][0]
         Lita.logger.debug "lita-onewheel-amazon-product: Grabbing URI #{uri}"
-        doc = RestClient.get uri
+
+        counter = 0
+        loop do
+          doc = RestClient.get uri
+
+          counter += 1
+          break if counter == 3 or doc.code == 200
+        end
+
 
         noko_doc = Nokogiri::HTML doc
         noko_doc.css('meta').each do |meta|
@@ -37,6 +44,7 @@ module Lita
       # Here we keep trying until we get something.
       def get_price(noko_doc)
         price_node = noko_doc.css('span#priceblock_ourprice')
+        price = nil
 
         # Typical product price
         if price_node.empty?
