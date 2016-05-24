@@ -11,21 +11,21 @@ module Lita
         uri = response.matches[0][0]
         Lita.logger.debug "lita-onewheel-amazon-product: Grabbing URI #{uri}"
 
+        noko_doc = nil
         counter = 0
         loop do
           doc = RestClient.get uri
 
-          counter += 1
-          break if counter == 3 or doc.code == 200
-        end
-
-
-        noko_doc = Nokogiri::HTML doc
-        noko_doc.css('meta').each do |meta|
-          attrs = meta.attributes
-          if attrs['name'].to_s == 'title'
-            description = process_description attrs['content'].to_s
+          noko_doc = Nokogiri::HTML doc
+          noko_doc.css('meta').each do |meta|
+            attrs = meta.attributes
+            if attrs['name'].to_s == 'title'
+              description = process_description attrs['content'].to_s
+            end
           end
+
+          counter += 1
+          break if counter == 3 or description
         end
 
         if description.empty?
